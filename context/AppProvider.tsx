@@ -18,7 +18,7 @@ interface AppProviderType {
 
 const AppContext = createContext<AppProviderType|undefined>(undefined);
 
-const API_URL = `${process.env.NEXT_PUBLIC_BACKEND_URL}`;
+const API_URL = `${process.env.NEXT_PUBLIC_API_URL}`;
 
 export const AppProvider = ({
 children,

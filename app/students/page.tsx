@@ -32,7 +32,7 @@ const Students: React.FC = () => {
     //list all products
     const fetchAllProducts = async() => {
         try{
-            const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/get.php`)
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/get.php`)
             setProducts(response.data);
         }catch(error){
             console.log(`Error fetching products: ${error}`)

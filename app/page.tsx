@@ -25,7 +25,7 @@ export default function Home() {
     const fetchAllProducts = async() => {
       setLoading(true);
       try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/get-products.php`);
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/get-products.php`);
         setProducts(response.data.products);
         setError(null);
       } catch(error) {
