@@ -12,6 +12,7 @@ interface ProductType {
     title: string;
     description?: string;
     price?: number;
+    type?: number;
     file?: string;
     image?: File | null;
 }
@@ -27,6 +28,7 @@ const Dashboard: React.FC = () => {
         title: "",
         description: "",
         price: 0,
+        type: 1,
         file: "",
         image: null,
     });
@@ -69,6 +71,7 @@ const Dashboard: React.FC = () => {
                 formPayload.append("title", formData.title);
                 formPayload.append("description", formData.description || "");
                 formPayload.append("price", formData.price?.toString() || "");
+                formPayload.append("type", formData.type?.toString() || "");
                 formPayload.append("_method", "PUT");
 
                 if (formData.image && formData.image instanceof File) {
@@ -101,6 +104,7 @@ const Dashboard: React.FC = () => {
                         title: "",
                         description: "",
                         price: 0,
+                        type: 1,
                         file: "",
                         image: null,
                     });
@@ -174,6 +178,7 @@ const Dashboard: React.FC = () => {
                                         title: "",
                                         description: "",
                                         price: 0,
+                                        type: 1,
                                         file: "",
                                     })
                                     setIsEdit(false);
@@ -223,6 +228,21 @@ const Dashboard: React.FC = () => {
                                             required
                                         />
                                     </div>
+                                </div>
+
+                                <div className="mb-3">
+                                    <label className="form-label fw-bold">Type</label>
+                                    <select 
+                                        className="form-select border-secondary" 
+                                        name="type" 
+                                        value={formData.type}
+                                        onChange={ handleOnChangeEvent }
+                                        required
+                                    >
+                                        <option value="1">Writing Tool</option>
+                                        <option value="2">Mathematical Tool</option>
+                                        <option value="3">Paper Product</option>
+                                    </select>
                                 </div>
                                 
                                 <div className="mb-3">
@@ -274,6 +294,7 @@ const Dashboard: React.FC = () => {
                                         <tr>
                                             <th className="ps-4">ID</th>
                                             <th>Title</th>
+                                            <th>Type</th>
                                             <th>Banner</th>
                                             <th>Cost</th>
                                             <th className="text-center">Actions</th>
@@ -305,6 +326,17 @@ const Dashboard: React.FC = () => {
                                                         </small>
                                                     </td>
                                                     <td>
+                                                        {singleProduct.type === 1 ? (
+                                                            <span className="badge bg-info">Writing Tool</span>
+                                                        ) : singleProduct.type === 2 ? (
+                                                            <span className="badge bg-success">Mathematical Tool</span>
+                                                        ) : singleProduct.type === 3 ? (
+                                                            <span className="badge bg-warning text-dark">Paper Product</span>
+                                                        ) : (
+                                                            <span className="badge bg-secondary">Uncategorized</span>
+                                                        )}
+                                                    </td>
+                                                    <td>
                                                         {singleProduct.image ? (
                                                             <img 
                                                                 src={singleProduct.image} 
@@ -329,6 +361,7 @@ const Dashboard: React.FC = () => {
                                                                     setFormData({
                                                                         id: singleProduct.id,
                                                                         title: singleProduct.title,
+                                                                        type: singleProduct.type,
                                                                         description: singleProduct.description,
                                                                         price: singleProduct.price,
                                                                         file: singleProduct.image,

@@ -12,7 +12,7 @@ interface AppProviderType {
     isloading: boolean;
     authToken: string | null;
     login: (email: string, password: string) => Promise<void>;
-    register: (name: string, email: string, password: string, password_confirmation: string) => Promise<void>;
+    register: (name: string, email: string, password: string, address: string, year: number) => Promise<void>;
     logout: () => void;
 }
 
@@ -70,7 +70,7 @@ children,
         }
     }
 
-    const register = async (name: string, email: string, password: string, address: string) => {
+    const register = async (name: string, email: string, password: string, address: string, year: number) => {
         setIsLoading(true);
         try{
             const response = await axios.post(`${API_URL}/register.php`, {
@@ -78,6 +78,7 @@ children,
                 address,
                 email,
                 password,
+                year,
             }, {
                 headers: {
                     "Content-Type": "application/json"

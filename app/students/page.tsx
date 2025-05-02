@@ -4,13 +4,12 @@ import React, { useEffect } from "react";
 import { myAppHook } from "@/context/AppProvider";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import toast from "react-hot-toast";
-import Swal from "sweetalert2";
 
 interface ProductType {
     id?: number;
     name: string;
     address?: string;
+    year: number;
     email?: number;
 }
 
@@ -47,7 +46,7 @@ const Students: React.FC = () => {
                     <div className="d-flex justify-content-between align-items-center mb-4">
                         <div>
                             <h2 className="fw-bold text-primary mb-1">Student Directory</h2>
-                            <p className="text-muted">This store is run 100% by the student of this university</p>
+                            <p className="text-muted">This store is run 100% by the students of this university</p>
                         </div>
                     </div>
                     
@@ -80,6 +79,9 @@ const Students: React.FC = () => {
                                             </th>
                                             <th className="py-3">
                                                 <div className="text-uppercase text-muted small fw-bold">Email</div>
+                                            </th>
+                                            <th className="py-3">
+                                                <div className="text-uppercase text-muted small fw-bold">Year</div>
                                             </th>
                                             <th className="py-3">
                                                 <div className="text-uppercase text-muted small fw-bold">Address</div>
@@ -126,6 +128,19 @@ const Students: React.FC = () => {
                                                             <i className="bi bi-envelope text-muted me-2"></i>
                                                             <span>{singleProduct.email}</span>
                                                         </div>
+                                                    </td>
+                                                    <td>
+                                                        {singleProduct.year === 1 ? (
+                                                            <span className="badge bg-info">Year 1</span>
+                                                        ) : singleProduct.year === 2 ? (
+                                                            <span className="badge bg-success">Year 2</span>
+                                                        ) : singleProduct.year === 3 ? (
+                                                            <span className="badge bg-warning text-dark">Year 3</span>
+                                                        ) : singleProduct.year === 4 ? (
+                                                            <span className="badge bg-danger">Year 4</span>
+                                                        ) : (
+                                                            <span className="badge bg-secondary">Uncategorized</span>
+                                                        )}
                                                     </td>
                                                     <td>
                                                         <div className="d-flex align-items-center">
