@@ -32,7 +32,7 @@ const Auth: React.FC = () => {
     }
   }, [authToken, isloading])
 
-  const handleOnChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleOnChangeInput = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
