@@ -8,7 +8,7 @@ interface formData {
   name?: string;
   email: string;
   password: string;
-  password_confirmation?: string;
+  address: string;
 }
 
 const Auth: React.FC = () => {
@@ -17,7 +17,7 @@ const Auth: React.FC = () => {
     name: "",
     email: "",
     password: "",
-    password_confirmation: "",
+    address: "",
   })
 
   const { login, register, authToken, isloading } = myAppHook();
@@ -48,7 +48,7 @@ const Auth: React.FC = () => {
       }
     }else{
       try{
-        await register( formData.name!, formData.email, formData.password, formData.password_confirmation!);
+        await register( formData.name!, formData.email, formData.password, formData.address);
       }
       catch(error){
         console.log(`Auth error: ${error}`)
@@ -113,6 +113,26 @@ const Auth: React.FC = () => {
                     />
                   </div>
                 </div>
+
+                {!isLogin && (
+                  <div className="mb-4">
+                    <label className="form-label fw-bold text-muted small">Address</label>
+                    <div className="input-group">
+                      <span className="input-group-text bg-light border-end-0">
+                        <i className="bi bi-shield-lock-fill text-primary"></i>
+                      </span>
+                      <input
+                        className="form-control bg-light border-start-0"
+                        name="address"
+                        type="text"
+                        value={formData.address}
+                        placeholder="Enter your address"
+                        onChange={handleOnChangeInput}
+                        required
+                      />
+                    </div>
+                  </div>
+                )}
                 
                 <div className="mb-4">
                   <label className="form-label fw-bold text-muted small">PASSWORD</label>
@@ -131,26 +151,6 @@ const Auth: React.FC = () => {
                     />
                   </div>
                 </div>
-                
-                {!isLogin && (
-                  <div className="mb-4">
-                    <label className="form-label fw-bold text-muted small">CONFIRM PASSWORD</label>
-                    <div className="input-group">
-                      <span className="input-group-text bg-light border-end-0">
-                        <i className="bi bi-shield-lock-fill text-primary"></i>
-                      </span>
-                      <input
-                        className="form-control bg-light border-start-0"
-                        name="password_confirmation"
-                        type="password"
-                        value={formData.password_confirmation}
-                        placeholder="Confirm your password"
-                        onChange={handleOnChangeInput}
-                        required
-                      />
-                    </div>
-                  </div>
-                )}
                 
                 <div className="d-grid gap-2 mt-5">
                   <button className="btn btn-primary btn-lg py-3 fw-bold shadow-sm" type="submit">

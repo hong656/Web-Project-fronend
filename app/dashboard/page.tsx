@@ -64,16 +64,23 @@ const Dashboard: React.FC = () => {
         try{
             if(isEdit){
                 // Edit Operation
+                const formPayload = new FormData();
+                formPayload.append("id", formData.id?.toString() || "");
+                formPayload.append("title", formData.title);
+                formPayload.append("description", formData.description || "");
+                formPayload.append("price", formData.price?.toString() || "");
+                formPayload.append("_method", "PUT");
+
+                if (formData.image && formData.image instanceof File) {
+                    formPayload.append("image", formData.image);
+                }
+
                 const response = await axios.post(
-                    `${process.env.NEXT_PUBLIC_BACKEND_URL}/products/${formData.id}`,
-                    {
-                        ...formData,
-                        '_method': 'PUT'
-                    },
+                    `${process.env.NEXT_PUBLIC_BACKEND_URL}/update-product.php`,
+                    formPayload,
                     {
                         headers: {
                             "Content-Type": "multipart/form-data",
-                            Authorization: `Bearer ${authToken}`,
                         },
                     }
                 );
@@ -82,10 +89,9 @@ const Dashboard: React.FC = () => {
                 toast.success(response.data.message);
             }else{
                 // Add Operation
-                const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/products`, formData, {
+                const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/create-product.php`, formData, {
                     headers: {
                         "Content-Type": "multipart/form-data",
-                        Authorization: `Bearer ${authToken}`,
                     },
                 })
                 
@@ -113,17 +119,14 @@ const Dashboard: React.FC = () => {
     //list all products
     const fetchAllProducts = async() => {
         try{
-            const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/products`, {
-                headers: {
-                    Authorization: `Bearer ${authToken}`,
-                },
-            })
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/get-products.php`)
             setProducts(response.data.products);
         }catch(error){
-            console.log
+            console.log(`Error fetching products: ${error}`)
         }
     }
 
+    //delete product
     const handleDeleteProduct = async(id: number) => {
         Swal.fire({
             title: "Are you sure?",
@@ -136,10 +139,8 @@ const Dashboard: React.FC = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try{
-                    const response = await axios.delete(`${process.env.NEXT_PUBLIC_BACKEND_URL}/products/${id}`, {
-                        headers: {
-                            Authorization: `Bearer ${authToken}`,
-                        },
+                    const response = await axios.delete(`${process.env.NEXT_PUBLIC_BACKEND_URL}/delete-product.php`, {
+                        data: { id },
                     })
                     if(response.data.status){
                         toast.success(response.data.message);
@@ -163,8 +164,24 @@ const Dashboard: React.FC = () => {
             <div className="row g-4">
                 <div className="col-md-4">
                     <div className="card shadow border-0">
-                        <div className="card-header bg-primary text-white py-3">
-                            <h4 className="mb-0 fw-bold">{ isEdit ? "Edit" : "Add" } Product</h4>
+                        <div className="card-header bg-primary d-flex justify-content-between text-white py-3">
+                            <h4 className="mb-0 fw-bold">{ isEdit ? "Edit" : "Add" } School Product</h4>
+                            {isEdit && (
+                            <button 
+                                className="btn btn-sm bg-success" 
+                                onClick={() => {
+                                    setFormData({
+                                        title: "",
+                                        description: "",
+                                        price: 0,
+                                        file: "",
+                                    })
+                                    setIsEdit(false);
+                                }}
+                            >
+                                Add Product
+                            </button>
+                            )}
                         </div>
                         <div className="card-body p-4">
                             <form onSubmit={ handleFormSubmit }>
@@ -245,7 +262,7 @@ const Dashboard: React.FC = () => {
                 <div className="col-md-8">
                     <div className="card shadow border-0">
                         <div className="card-header bg-primary text-white py-3 d-flex justify-content-between align-items-center">
-                            <h4 className="mb-0 fw-bold">Product List</h4>
+                            <h4 className="mb-0 fw-bold">School Product List</h4>
                             <span className="badge bg-white text-primary rounded-pill px-3 py-2">
                                 {products.length} Items
                             </span>
@@ -293,7 +310,7 @@ const Dashboard: React.FC = () => {
                                                                 src={singleProduct.image} 
                                                                 alt="Product" 
                                                                 className="img-thumbnail shadow-sm" 
-                                                                style={{width: "80px", height: "60px", objectFit: "cover"}}
+                                                                style={{width: "120px", height: "70px", objectFit: "cover"}}
                                                             />
                                                         ) : (
                                                             <span className="badge bg-warning text-dark">No image</span>
@@ -301,7 +318,7 @@ const Dashboard: React.FC = () => {
                                                     </td>
                                                     <td>
                                                         <span className="fw-bold text-primary">
-                                                            ${singleProduct.price?.toFixed(2)}
+                                                            ${singleProduct.price}
                                                         </span>
                                                     </td>
                                                     <td>

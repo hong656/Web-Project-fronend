@@ -5,6 +5,7 @@ import React, { createContext, useContext, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import Cookies from "js-cookie";
+import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
 
 interface AppProviderType {
@@ -32,7 +33,7 @@ children,
         if(token){
             setAuthToken(token);
         }else{
-            router.push("/auth");
+            router.push("/");
         }
         setIsLoading(false);
     })
@@ -40,10 +41,15 @@ children,
     const login = async (email: string, password: string) => {
         setIsLoading(true);
         try{
-            const response = await axios.post(`${API_URL}/login`, {
+            const response = await axios.post(`${API_URL}/login.php`, {
                 email,
                 password,
-            })
+            }, {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                withCredentials: true,
+            });
 
             if(response.data.status){
                 Cookies.set("authToken", response.data.token, { expires: 7 });
@@ -64,15 +70,21 @@ children,
         }
     }
 
-    const register = async (name: string, email: string, password: string, password_confirmation: string) => {
+    const register = async (name: string, email: string, password: string, address: string) => {
         setIsLoading(true);
         try{
-            const response = await axios.post(`${API_URL}/register`, {
+            const response = await axios.post(`${API_URL}/register.php`, {
                 name,
+                address,
                 email,
                 password,
-                password_confirmation,
-            })
+            }, {
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                withCredentials: true
+            });
+            router.push("/auth");
             console.log(response);
         }
         catch(error){
@@ -84,11 +96,27 @@ children,
     }
 
     const logout = () => {
-        setAuthToken(null);
-        Cookies.remove("authToken");
-        setIsLoading(false);
-        toast.success("Logout successful!");
-        router.push("/auth");
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You want to logout of your account!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Logout!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                setAuthToken(null);
+                Cookies.remove("authToken");
+                setIsLoading(false);
+                toast.success("Logout successful!");
+                Swal.fire({
+                title: "Logout!",
+                text: "Logout successful!",
+                icon: "success"
+                });
+            }
+        });
     }
 
     return(
