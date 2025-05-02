@@ -12,6 +12,7 @@ interface ProductType {
     title: string;
     description?: string;
     price?: number;
+    type?: number;
     image?: File | null;
 }
 
@@ -105,7 +106,16 @@ export default function Home() {
                     />
                   </div>
                   <div className="card-body d-flex flex-column">
-                    <h5 className="card-title fw-bold">{product.title}</h5>
+                    {product.type === 1 ? (
+                      <span className="badge bg-info w-25">Writing Tool</span>
+                    ) : product.type === 2 ? (
+                      <span className="badge bg-success" style={{width: "120px"}} >Mathematical Tool</span>
+                    ) : product.type === 3 ? (
+                      <span className="badge bg-warning text-dark w-25">Paper Product</span>
+                    ) : (
+                      <span className="badge bg-secondary w-25">Uncategorized</span>
+                    )}
+                    <h5 className="card-title fw-bold mt-2">{product.title}</h5>
                     <p className="card-text flex-grow-1">{product.description || "No description available"}</p>
                     <div className="d-flex justify-content-between align-items-center mt-3">
                       <span className="fw-bold text-primary">

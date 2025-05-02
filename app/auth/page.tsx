@@ -9,6 +9,7 @@ interface formData {
   email: string;
   password: string;
   address: string;
+  year: number;
 }
 
 const Auth: React.FC = () => {
@@ -18,6 +19,7 @@ const Auth: React.FC = () => {
     email: "",
     password: "",
     address: "",
+    year: 1,
   })
 
   const { login, register, authToken, isloading } = myAppHook();
@@ -48,7 +50,7 @@ const Auth: React.FC = () => {
       }
     }else{
       try{
-        await register( formData.name!, formData.email, formData.password, formData.address);
+        await register( formData.name!, formData.email, formData.password, formData.address, formData.year);
       }
       catch(error){
         console.log(`Auth error: ${error}`)
@@ -77,7 +79,7 @@ const Auth: React.FC = () => {
               
               <form onSubmit={handleFormSubmit}>
                 {!isLogin && (
-                  <div className="mb-4">
+                  <div className="mb-2">
                     <label className="form-label fw-bold text-muted small">FULL NAME</label>
                     <div className="input-group">
                       <span className="input-group-text bg-light border-end-0">
@@ -96,7 +98,7 @@ const Auth: React.FC = () => {
                   </div>
                 )}
                 
-                <div className="mb-4">
+                <div className="mb-2">
                   <label className="form-label fw-bold text-muted small">EMAIL ADDRESS</label>
                   <div className="input-group">
                     <span className="input-group-text bg-light border-end-0">
@@ -115,7 +117,25 @@ const Auth: React.FC = () => {
                 </div>
 
                 {!isLogin && (
-                  <div className="mb-4">
+                  <div className="mb-3">
+                    <label className="form-label fw-bold text-muted small">Year</label>
+                    <select 
+                        className="form-select border-end-0" 
+                        name="year" 
+                        value={formData.year}
+                        onChange={ handleOnChangeInput }
+                        required
+                    >
+                        <option value="1">Year 1</option>
+                        <option value="2">Year 2</option>
+                        <option value="3">Year 3</option>
+                        <option value="3">Year 4</option>
+                    </select>
+                </div>
+                )}
+
+                {!isLogin && (
+                  <div className="mb-2">
                     <label className="form-label fw-bold text-muted small">Address</label>
                     <div className="input-group">
                       <span className="input-group-text bg-light border-end-0">
@@ -134,7 +154,7 @@ const Auth: React.FC = () => {
                   </div>
                 )}
                 
-                <div className="mb-4">
+                <div className="mb-3">
                   <label className="form-label fw-bold text-muted small">PASSWORD</label>
                   <div className="input-group">
                     <span className="input-group-text bg-light border-end-0">
@@ -160,7 +180,7 @@ const Auth: React.FC = () => {
                 </div>
               </form>
               
-              <div className="text-center mt-4">
+              <div className="text-center mt-3">
                 <p className="mb-0 text-muted">
                   {isLogin ? "Don't have an account?" : "Already have an account?"} 
                   <span 
@@ -171,12 +191,11 @@ const Auth: React.FC = () => {
                   </span>
                 </p>
               </div>
-            </div>
-            
-            <div className="card-footer bg-white text-center p-4 border-0">
-              <div className="small text-muted">
-                <i className="bi bi-shield-check me-1"></i>
-                Your data is securely encrypted
+              <div className="card-footer bg-white text-center border-0">
+                <div className="small text-muted">
+                  <i className="bi bi-shield-check me-1"></i>
+                  Your data is securely encrypted
+                </div>
               </div>
             </div>
           </div>
