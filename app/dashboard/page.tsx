@@ -44,20 +44,23 @@ const Dashboard: React.FC = () => {
     }, [authToken, isloading] )
 
     //On change event
-    const handleOnChangeEvent = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if(e.target.files){
+    const handleOnChangeEvent = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+        ) => {
+        if (e.target instanceof HTMLInputElement && e.target.files) {
             setFormData({
-                ...formData,
-                image: e.target.files[0],
-                file: URL.createObjectURL(e.target.files[0]),
-            })
-        }else{
+            ...formData,
+            image: e.target.files[0],
+            file: URL.createObjectURL(e.target.files[0]),
+            });
+        } else {
             setFormData({
-                ...formData,
-                [e.target.name]: e.target.value,
-            })
+            ...formData,
+            [e.target.name]: e.target.value,
+            });
         }
-    }
+    };
+      
 
     //Form Submit
     const handleFormSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
