@@ -1,6 +1,6 @@
 "use client";
 
-import React, { use, useEffect } from "react";
+import React, { useEffect } from "react";
 import { myAppHook } from "@/context/AppProvider";
 import { useRouter } from "next/navigation";
 
