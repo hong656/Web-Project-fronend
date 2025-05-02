@@ -13,7 +13,7 @@ interface ProductType {
     description?: string;
     price?: number;
     type?: number;
-    image?: File | null;
+    image?: string | File | null;
 }
 
 export default function Home() {
@@ -99,7 +99,9 @@ export default function Home() {
                 <div className="card h-100 shadow-sm hover-shadow transition">
                   <div className="text-center p-3">
                   <img 
-                        src={product.image} 
+                        src={typeof product.image === 'string' 
+                            ? product.image 
+                            : product.image ? URL.createObjectURL(product.image) : ''}
                         alt="Product" 
                         className="img-thumbnail shadow-sm" 
                         style={{width: "200px", height: "120px", objectFit: "cover"}}

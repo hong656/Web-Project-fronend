@@ -13,8 +13,8 @@ interface ProductType {
     description?: string;
     price?: number;
     type?: number;
-    file?: string;
-    image?: File | null;
+    file?: string | File | null;
+    image?: string | File | null;
 }
 
 const Dashboard: React.FC = () => {
@@ -253,7 +253,11 @@ const Dashboard: React.FC = () => {
                                     {formData.file && 
                                         <div className="text-center border rounded p-3 mb-3 bg-white">
                                             <img 
-                                                src={formData.file} 
+                                                src={typeof formData.file === 'string' 
+                                                    ? formData.file 
+                                                    : formData.file instanceof File 
+                                                        ? URL.createObjectURL(formData.file) 
+                                                        : ''}
                                                 alt="Preview" 
                                                 id="bannerPreview" 
                                                 className="img-fluid rounded shadow-sm" 
@@ -342,7 +346,9 @@ const Dashboard: React.FC = () => {
                                                     <td>
                                                         {singleProduct.image ? (
                                                             <img 
-                                                                src={singleProduct.image} 
+                                                            src={typeof singleProduct.image === 'string' 
+                                                                ? singleProduct.image 
+                                                                : URL.createObjectURL(singleProduct.image)}
                                                                 alt="Product" 
                                                                 className="img-thumbnail shadow-sm" 
                                                                 style={{width: "120px", height: "70px", objectFit: "cover"}}
@@ -367,7 +373,9 @@ const Dashboard: React.FC = () => {
                                                                         type: singleProduct.type,
                                                                         description: singleProduct.description,
                                                                         price: singleProduct.price,
-                                                                        file: singleProduct.image,
+                                                                        file: typeof singleProduct.image === 'string' 
+                                                                        ? singleProduct.image 
+                                                                        : singleProduct.image ? URL.createObjectURL(singleProduct.image) : undefined,
                                                                     })
                                                                     setIsEdit(true);
                                                                 }}
