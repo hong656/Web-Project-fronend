@@ -1,5 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
+import Image from 'next/image';
 
 const AboutPage = () => {
   return (
@@ -15,7 +16,7 @@ const AboutPage = () => {
             <div className="text-center mb-5">
               <h1 className="display-4 fw-bold text-primary mb-3">About My Project</h1>
               <div className="d-flex justify-content-center align-items-center mb-4">
-                <img 
+                <Image 
                   src="/new-pfp.PNG" 
                   alt="Profile" 
                   className="rounded-circle border border-primary border-3 shadow-sm"
@@ -148,7 +149,7 @@ const AboutPage = () => {
               <h3 className="mb-3">Thank you for visiting!</h3>
               <p className="mb-0">
                 If you have any questions or would like to learn more about this project, 
-                please don't hesitate to reach out.
+                please don&apos;t hesitate to reach out.
               </p>
             </div>
           </div>
