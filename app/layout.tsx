@@ -5,7 +5,7 @@ import { Toaster } from "react-hot-toast";
 import { AppProvider } from "@/context/AppProvider";
 
 export const metadata: Metadata = {
-  title: "My Next App",
+  title: "School Supply Store",
   description: "CRUD based on Next.js",
 };
 
