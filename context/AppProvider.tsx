@@ -33,8 +33,8 @@ children,
         if(token){
             setAuthToken(token);
         }else{
-            alert("You are not logged in!");
             // router.push("/auth");
+            setAuthToken(null);//delete soon
         }
         setIsLoading(false);
     })

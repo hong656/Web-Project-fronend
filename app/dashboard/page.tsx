@@ -36,7 +36,6 @@ const Dashboard: React.FC = () => {
     //check authToken
     useEffect(() => {
         if(!authToken){
-            alert("You are not logged in!");
             // router.push("/auth");
             return;
         }
