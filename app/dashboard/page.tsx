@@ -34,14 +34,14 @@ const Dashboard: React.FC = () => {
     });
 
     //check authToken
-    useEffect(() => {
-        if(!authToken){
-            router.push("/auth");
-            return;
-        }
+    // useEffect(() => {
+    //     if(!authToken){
+    //         router.push("/auth");
+    //         return;
+    //     }
 
-        fetchAllProducts();
-    }, [authToken, isloading] )
+    //     fetchAllProducts();
+    // }, [authToken, isloading] )
 
     //On change event
     const handleOnChangeEvent = (

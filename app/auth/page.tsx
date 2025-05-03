@@ -25,12 +25,12 @@ const Auth: React.FC = () => {
   const { login, register, authToken, isloading } = myAppHook();
   const router = useRouter();
 
-  useEffect(() => {
-    if(authToken){
-      router.push("/dashboard");
-      return;
-    }
-  }, [authToken, isloading])
+  // useEffect(() => {
+  //   if(authToken){
+  //     router.push("/dashboard");
+  //     return;
+  //   }
+  // }, [authToken, isloading])
 
   const handleOnChangeInput = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData({

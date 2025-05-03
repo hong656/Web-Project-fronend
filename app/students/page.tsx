@@ -20,14 +20,14 @@ const Students: React.FC = () => {
     const [products, setProducts] = React.useState<ProductType[]>([]);
 
     //check authToken
-    useEffect(() => {
-        if(!authToken){
-            router.push("/auth");
-            return;
-        }
+    // useEffect(() => {
+    //     if(!authToken){
+    //         router.push("/auth");
+    //         return;
+    //     }
 
-        fetchAllProducts();
-    }, [authToken, isloading] )
+    //     fetchAllProducts();
+    // }, [authToken, isloading] )
 
     //list all products
     const fetchAllProducts = async() => {
