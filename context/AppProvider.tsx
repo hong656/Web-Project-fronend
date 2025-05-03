@@ -28,15 +28,16 @@ children,
     const [ authToken, setAuthToken ] = React.useState<string | null>(null);
     const router = useRouter();
 
-    // useEffect(() => {
-    //     const token = Cookies.get("authToken");
-    //     if(token){
-    //         setAuthToken(token);
-    //     }else{
-    //         router.push("/auth");
-    //     }
-    //     setIsLoading(false);
-    // })
+    useEffect(() => {
+        const token = Cookies.get("authToken");
+        if(token){
+            setAuthToken(token);
+        }else{
+            alert("You are not logged in!");
+            // router.push("/auth");
+        }
+        setIsLoading(false);
+    })
 
     const login = async (email: string, password: string) => {
         setIsLoading(true);
