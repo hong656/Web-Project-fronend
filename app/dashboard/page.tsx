@@ -82,7 +82,7 @@ const Dashboard: React.FC = () => {
                 }
 
                 const response = await api.post(
-                    `${process.env.NEXT_PUBLIC_API_URL}/update-product.php`,
+                    `/update-product.php`,
                     formPayload,
                     {
                         headers: {
@@ -95,7 +95,7 @@ const Dashboard: React.FC = () => {
                 toast.success(response.data.message);
             }else{
                 // Add Operation
-                const response = await api.post(`${process.env.NEXT_PUBLIC_API_URL}/create-product.php`, formData, {
+                const response = await api.post(`/create-product.php`, formData, {
                     headers: {
                         "Content-Type": "multipart/form-data",
                     },
@@ -126,7 +126,7 @@ const Dashboard: React.FC = () => {
     //list all products
     const fetchAllProducts = async() => {
         try{
-            const response = await api.get(`${process.env.NEXT_PUBLIC_API_URL}/get-products.php`)
+            const response = await api.get(`get-products.php`)
             setProducts(response.data.products);
         }catch(error){
             console.log(`Error fetching products: ${error}`)
@@ -146,7 +146,7 @@ const Dashboard: React.FC = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try{
-                    const response = await api.delete(`${process.env.NEXT_PUBLIC_API_URL}/delete-product.php`, {
+                    const response = await api.delete(`delete-product.php`, {
                         data: { id },
                     })
                     if(response.data.status){
