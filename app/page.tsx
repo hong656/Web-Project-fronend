@@ -3,9 +3,9 @@
 import Image from "next/image"; 
 import Link from "next/link";
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '@/lib/axios';
 import React from "react";
-import './products.css'; // Create this CSS file in the same directory
+import './products.css';
 
 interface ProductType {
     id?: number;
@@ -25,7 +25,7 @@ export default function Home() {
     const fetchAllProducts = async() => {
       setLoading(true);
       try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/get-products.php`);
+        const response = await api.get(`${process.env.NEXT_PUBLIC_API_URL}/get-products.php`);
         setProducts(response.data.products);
         setError(null);
       } catch(error) {

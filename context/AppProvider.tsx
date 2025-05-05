@@ -2,7 +2,7 @@
 
 import Loader from "@/components/Loader";
 import React, { createContext, useContext, useEffect } from "react";
-import axios from "axios";
+import api from "@/lib/axios";
 import { toast } from "react-hot-toast";
 import Cookies from "js-cookie";
 import Swal from "sweetalert2";
@@ -41,61 +41,48 @@ children,
 
     const login = async (email: string, password: string) => {
         setIsLoading(true);
-        try{
-            const response = await axios.post(`${API_URL}/login.php`, {
+        try {
+            const response = await api.post("/login.php", {
                 email,
                 password,
-            }, {
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                withCredentials: true,
             });
-
-            if(response.data.status){
+    
+            if (response.data.status) {
                 Cookies.set("authToken", response.data.token, { expires: 7 });
                 toast.success("Login successful!");
                 setAuthToken(response.data.token);
                 router.push("/dashboard");
-            }else{
+            } else {
                 toast.error("Login failed!");
             }
-
-            console.log(response);
-        }
-        catch(error){
-            console.log(`Login error: ${error}`)
-        }
-        finally{
+        } catch (error) {
+            console.log(`Login error: ${error}`);
+            toast.error("An error occurred during login.");
+        } finally {
             setIsLoading(false);
         }
-    }
-
+    };
+    
     const register = async (name: string, email: string, password: string, address: string, year: number) => {
         setIsLoading(true);
-        try{
-            const response = await axios.post(`${API_URL}/register.php`, {
+        try {
+            const response = await api.post("/register.php", {
                 name,
                 address,
                 email,
                 password,
                 year,
-            }, {
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                withCredentials: true
             });
+            toast.success("Registration successful!");
             router.push("/auth");
-            console.log(response);
-        }
-        catch(error){
-            console.log(`Register error: ${error}`)
-        }
-        finally{
+        } catch (error) {
+            console.log(`Register error: ${error}`);
+            toast.error("An error occurred during registration.");
+        } finally {
             setIsLoading(false);
         }
-    }
+    };
+    
 
     const logout = () => {
         Swal.fire({
