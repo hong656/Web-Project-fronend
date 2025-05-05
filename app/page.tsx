@@ -25,7 +25,7 @@ export default function Home() {
     const fetchAllProducts = async() => {
       setLoading(true);
       try {
-        const response = await api.get(`/get-products.php`);
+        const response = await api.get(`/get-products.php?i=1`);
         setProducts(response.data.products);
         setError(null);
       } catch(error) {
