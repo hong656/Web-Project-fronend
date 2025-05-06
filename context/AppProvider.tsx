@@ -50,7 +50,7 @@ children,
                 Cookies.set("authToken", response.data.token, { expires: 7 });
                 toast.success("Login successful!");
                 setAuthToken(response.data.token);
-                router.push("/dashboard");
+                router.push("/");
             } else {
                 toast.error("Login failed!");
             }
