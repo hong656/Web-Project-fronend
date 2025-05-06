@@ -36,7 +36,7 @@ const Dashboard: React.FC = () => {
     //check authToken
     useEffect(() => {
         if(!authToken){
-            // router.push("/auth");
+            router.push("/auth");
             return;
         }
 
