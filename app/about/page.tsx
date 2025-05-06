@@ -97,7 +97,7 @@ const AboutPage = () => {
                       <i className="bi bi-hdd-rack fs-5 text-primary"></i>
                     </div>
                     <div>
-                      <strong>Backend (PHP):</strong> InfinityFree
+                      <strong>Backend (PHP):</strong> AwardSpace
                     </div>
                   </li>
                   <li className="list-group-item d-flex align-items-center border-start border-primary border-5">
