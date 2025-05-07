@@ -6,7 +6,7 @@ import api from "@/lib/axios";
 import { toast } from "react-hot-toast";
 import Cookies from "js-cookie";
 import Swal from "sweetalert2";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 interface AppProviderType {
     isloading: boolean;
@@ -18,25 +18,29 @@ interface AppProviderType {
 
 const AppContext = createContext<AppProviderType|undefined>(undefined);
 
-const API_URL = `${process.env.NEXT_PUBLIC_API_URL}`;
 
-export const AppProvider = ({
-children,
-}:{children: React.ReactNode;}) => {
+const publicRoutes = ["/", "/auth", "/about"];
 
-    const [ isloading, setIsLoading ] = React.useState<boolean>(true);
-    const [ authToken, setAuthToken ] = React.useState<string | null>(null);
+export const AppProvider = ({ children }: { children: React.ReactNode }) => {
+    const [isloading, setIsLoading] = React.useState<boolean>(true);
+    const [authToken, setAuthToken] = React.useState<string | null>(null);
     const router = useRouter();
+    const pathname = usePathname();
 
     useEffect(() => {
         const token = Cookies.get("authToken");
-        if(token){
+
+        if (token) {
             setAuthToken(token);
-        }else{
-            router.push("/auth");
+        } else {
+            const isPublic = publicRoutes.includes(pathname);
+            if (!isPublic) {
+                router.push("/auth");
+            }
         }
+
         setIsLoading(false);
-    })
+    }, [pathname]); // ⬅️ Re-run effect when route changes
 
     const login = async (email: string, password: string) => {
         setIsLoading(true);

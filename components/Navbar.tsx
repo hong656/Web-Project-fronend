@@ -36,7 +36,13 @@ const Navbar = () => {
                                     </li>
                                 </>
                             ) : (
-                                <>            
+                                <>
+                                    <li className="nav-item">
+                                        <Link className="nav-link" href="/">Home</Link>
+                                    </li>
+                                    <li>
+                                        <Link className="nav-link" href="/about">About Me</Link>
+                                    </li>    
                                     <li className="nav-item position-relative">
                                         <Link 
                                             className="btn btn-success ms-2" 
