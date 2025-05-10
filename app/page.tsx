@@ -86,13 +86,13 @@ export default function Home() {
           </div>
         )}
         
-        {!loading && !error && products.length === 0 && (
+        {!loading && !error && Array.isArray(products) && products.length === 0 && (
           <div className="alert alert-info text-center" role="alert">
             No products found. Check back soon!
           </div>
         )}
         
-        {!loading && !error && products.length > 0 && (
+        {!loading && !error && Array.isArray(products) && products.length === 0 && (
           <div className="row">
             {products.map((product) => (
               <div className="col-md-4 mb-4" key={product.id}>

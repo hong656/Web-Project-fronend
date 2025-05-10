@@ -20,7 +20,9 @@ const AboutPage = () => {
                   src="/new-pfp.PNG" 
                   alt="Profile" 
                   className="rounded-circle border border-primary border-3 shadow-sm"
-                  style={{ width: '100px', height: '100px', objectFit: 'cover' }}
+                  width={100}
+                  height={100}
+                  style={{ objectFit: 'cover' }}
                 />
               </div>
               <h3 className="fw-bold" >កូវ សុងហេង</h3>
