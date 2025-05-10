@@ -2,12 +2,52 @@
 
 import Link from "next/link";
 import { myAppHook } from "@/context/AppProvider";
+import { useState, useEffect } from "react";
 
 const Navbar = () => {
     const {logout, authToken} = myAppHook();
+    const [darkMode, setDarkMode] = useState(false);
+    const [isFullscreen, setIsFullscreen] = useState(false);
+
+    // Initialize dark mode from localStorage on component mount
+    useEffect(() => {
+        const savedDarkMode = localStorage.getItem('darkMode') === 'true';
+        setDarkMode(savedDarkMode);
+        if (savedDarkMode) {
+            document.documentElement.classList.add('dark-mode');
+        }
+    }, []);
+
+    // Toggle dark mode
+    const toggleDarkMode = () => {
+        const newDarkMode = !darkMode;
+        setDarkMode(newDarkMode);
+        localStorage.setItem('darkMode', newDarkMode.toString());
+        
+        if (newDarkMode) {
+            document.documentElement.classList.add('dark-mode');
+        } else {
+            document.documentElement.classList.remove('dark-mode');
+        }
+    };
+
+    // Toggle fullscreen
+    const toggleFullscreen = () => {
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen().catch(err => {
+                console.error(`Error attempting to enable fullscreen: ${err.message}`);
+            });
+            setIsFullscreen(true);
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+                setIsFullscreen(false);
+            }
+        }
+    };
 
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
             <div className="container">
                 <Link className="navbar-brand fw-bold d-flex align-items-center" href="/">
                     <i className="bi bi-book me-2"></i>
@@ -71,7 +111,7 @@ const Navbar = () => {
                                     </li>    
                                     <li className="nav-item position-relative">
                                         <Link 
-                                            className="btn btn-light ms-2" 
+                                            className="btn btn-light ms-2 pt-2" 
                                             href="/auth"
                                         >
                                             <i className="bi bi-box-arrow-in-right me-1"></i> Login
@@ -97,6 +137,32 @@ const Navbar = () => {
                                 </>
                             )
                         }
+                        {/* Dark mode toggle button */}
+                        <li className="nav-item ms-2">
+                            <button 
+                                className="btn btn-light pt-2" 
+                                onClick={toggleDarkMode}
+                                aria-label="Toggle dark mode"
+                            >
+                                {darkMode ? 
+                                    <i className="bi bi-sun-fill"></i> : 
+                                    <i className="bi bi-moon-fill"></i>
+                                }
+                            </button>
+                        </li>
+                        {/* Fullscreen toggle button */}
+                        <li className="nav-item ms-2">
+                            <button 
+                                className="btn btn-light pt-2" 
+                                onClick={toggleFullscreen}
+                                aria-label="Toggle fullscreen"
+                            >
+                                {isFullscreen ? 
+                                    <i className="bi bi-fullscreen-exit"></i> : 
+                                    <i className="bi bi-fullscreen"></i>
+                                }
+                            </button>
+                        </li>
                     </ul>
                 </div>
             </div>

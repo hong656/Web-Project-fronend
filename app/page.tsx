@@ -82,7 +82,7 @@ export default function Home() {
         </div>
     </section>
     
-    {/* <section className="bg-light py-5">
+    <section className="bg-light py-5">
         <div className="container">
             <h2 className="section-title text-center mb-5">Featured Products</h2>
             
@@ -155,7 +155,7 @@ export default function Home() {
               </Link>
             </div>
         </div>
-      </section> */}
+      </section>
       
       <section className="py-5">
         <div className="container">
