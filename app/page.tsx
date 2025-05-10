@@ -86,7 +86,7 @@ export default function Home() {
           </div>
         )}
         
-        {!loading && !error && products.length > 0 && (
+        {!loading && !error && products.length === 0 && (
           <div className="alert alert-info text-center" role="alert">
             No products found. Check back soon!
           </div>
