@@ -19,7 +19,7 @@ interface AppProviderType {
 const AppContext = createContext<AppProviderType|undefined>(undefined);
 
 
-const publicRoutes = ["/", "/auth", "/about"];
+const publicRoutes = ["/", "/auth", "/about", "/services"];
 
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     const [isloading, setIsLoading] = React.useState<boolean>(true);
