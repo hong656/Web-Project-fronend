@@ -82,7 +82,7 @@ export default function Home() {
         </div>
     </section>
     
-    <section className="bg-light py-5">
+    {/* <section className="bg-light py-5">
         <div className="container">
             <h2 className="section-title text-center mb-5">Featured Products</h2>
             
@@ -155,7 +155,7 @@ export default function Home() {
               </Link>
             </div>
         </div>
-      </section>
+      </section> */}
       
       <section className="py-5">
         <div className="container">
@@ -170,7 +170,7 @@ export default function Home() {
                 </div>
                 <div>
                   <h5 className="fw-bold">Student-Run Business</h5>
-                  <p className="text-muted">Our store is managed by students, for students.</p>
+                  <p>Our store is managed by students, for students.</p>
                 </div>
               </div>
               
@@ -180,7 +180,7 @@ export default function Home() {
                 </div>
                 <div>
                   <h5 className="fw-bold">Affordable Prices</h5>
-                  <p className="text-muted">We offer competitive prices on all school supplies.</p>
+                  <p>We offer competitive prices on all school supplies.</p>
                 </div>
               </div>
               
@@ -190,7 +190,7 @@ export default function Home() {
                 </div>
                 <div>
                   <h5 className="fw-bold">Quality Guaranteed</h5>
-                  <p className="text-muted">All our products are carefully selected for quality and durability.</p>
+                  <p>All our products are carefully selected for quality and durability.</p>
                 </div>
               </div>
             </div>
@@ -225,30 +225,30 @@ export default function Home() {
             <div className="col-md-2 mb-4 mb-md-0">
               <h6 className="fw-bold mb-3">Quick Links</h6>
               <ul className="list-unstyled">
-                <li className="mb-2"><Link href="/" className="text-muted text-decoration-none">Home</Link></li>
-                <li className="mb-2"><Link href="/about" className="text-muted text-decoration-none">About</Link></li>
-                <li className="mb-2"><Link href="/services" className="text-muted text-decoration-none">Services</Link></li>
+                <li className="mb-2"><Link href="/" className="text-decoration-none">Home</Link></li>
+                <li className="mb-2"><Link href="/about" className="text-decoration-none">About</Link></li>
+                <li className="mb-2"><Link href="/services" className="text-decoration-none">Services</Link></li>
               </ul>
             </div>
             <div className="col-md-3 mb-4 mb-md-0">
               <h6 className="fw-bold mb-3">Products</h6>
               <ul className="list-unstyled">
-                <li className="mb-2"><a href="#" className="text-muted text-decoration-none">Writing Tools</a></li>
-                <li className="mb-2"><a href="#" className="text-muted text-decoration-none">Mathematical Tools</a></li>
-                <li className="mb-2"><a href="#" className="text-muted text-decoration-none">Paper Products</a></li>
+                <li className="mb-2"><a href="#" className="text-decoration-none">Writing Tools</a></li>
+                <li className="mb-2"><a href="#" className="text-decoration-none">Mathematical Tools</a></li>
+                <li className="mb-2"><a href="#" className="text-decoration-none">Paper Products</a></li>
               </ul>
             </div>
             <div className="col-md-3">
               <h6 className="fw-bold mb-3">Contact</h6>
               <ul className="list-unstyled">
-                <li className="mb-2 text-muted"><i className="bi bi-geo-alt me-2"></i>123 School St, City</li>
-                <li className="mb-2 text-muted"><i className="bi bi-telephone me-2"></i>(123) 456-7890</li>
-                <li className="mb-2 text-muted"><i className="bi bi-envelope me-2"></i>info@schoolsupply.com</li>
+                <li className="mb-2"><i className="bi bi-geo-alt me-2"></i>123 School St, City</li>
+                <li className="mb-2"><i className="bi bi-telephone me-2"></i>(123) 456-7890</li>
+                <li className="mb-2"><i className="bi bi-envelope me-2"></i>info@schoolsupply.com</li>
               </ul>
             </div>
           </div>
           <hr className="my-4 bg-secondary" />
-          <div className="text-center text-muted">
+          <div className="text-center">
             <p className="mb-0">© 2025 Kov Songheng. All rights reserved.</p>
           </div>
         </div>
