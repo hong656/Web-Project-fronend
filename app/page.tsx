@@ -21,6 +21,30 @@ export default function Home() {
   const [error, setError] = useState(null);
   const [selectedProduct, setSelectedProduct] = useState<ProductType | null>(null);
 
+  // Add effect to handle body scroll when modal is opened/closed
+  useEffect(() => {
+    const handleModalOpen = () => {
+      document.body.style.overflow = 'hidden';
+    };
+
+    const handleModalClose = () => {
+      document.body.style.overflow = 'auto';
+    };
+
+    const modal = document.getElementById('productModal');
+    if (modal) {
+      modal.addEventListener('show.bs.modal', handleModalOpen);
+      modal.addEventListener('hidden.bs.modal', handleModalClose);
+    }
+
+    return () => {
+      if (modal) {
+        modal.removeEventListener('show.bs.modal', handleModalOpen);
+        modal.removeEventListener('hidden.bs.modal', handleModalClose);
+      }
+    };
+  }, []);
+
   useEffect(() => {
     const fetchAllProducts = async() => {
       setLoading(true);
