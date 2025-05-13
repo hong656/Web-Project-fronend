@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image"; 
 import Link from "next/link";
 import { useState, useEffect } from 'react';
 import api from '@/lib/axios';
@@ -219,5 +218,49 @@ export default function Home() {
         </div>
       </div>
     </div>
+
+    <footer className="bg-dark text-light py-5">
+      <div className="container">
+        <div className="row">
+          <div className="col-md-4 mb-4 mb-md-0">
+            <h5 className="fw-bold mb-3">School Supply Store</h5>
+            <p className="text-muted">Quality educational supplies for students, by students.</p>
+            <div className="d-flex mt-3">
+              <a href="#" className="text-light me-3"><i className="bi bi-facebook fs-5"></i></a>
+              <a href="#" className="text-light me-3"><i className="bi bi-twitter-x fs-5"></i></a>
+              <a href="#" className="text-light me-3"><i className="bi bi-instagram fs-5"></i></a>
+            </div>
+          </div>
+          <div className="col-md-2 mb-4 mb-md-0">
+            <h6 className="fw-bold mb-3">Quick Links</h6>
+            <ul className="list-unstyled">
+              <li className="mb-2"><Link href="/" className="text-decoration-none">Home</Link></li>
+              <li className="mb-2"><Link href="/about" className="text-decoration-none">About</Link></li>
+              <li className="mb-2"><Link href="/services" className="text-decoration-none">Services</Link></li>
+            </ul>
+          </div>
+          <div className="col-md-3 mb-4 mb-md-0">
+            <h6 className="fw-bold mb-3">Products</h6>
+            <ul className="list-unstyled">
+              <li className="mb-2"><a href="#" className="text-decoration-none">Writing Tools</a></li>
+              <li className="mb-2"><a href="#" className="text-decoration-none">Mathematical Tools</a></li>
+              <li className="mb-2"><a href="#" className="text-decoration-none">Paper Products</a></li>
+            </ul>
+          </div>
+          <div className="col-md-3">
+            <h6 className="fw-bold mb-3">Contact</h6>
+            <ul className="list-unstyled">
+              <li className="mb-2"><i className="bi bi-geo-alt me-2"></i>123 School St, City</li>
+              <li className="mb-2"><i className="bi bi-telephone me-2"></i>(123) 456-7890</li>
+              <li className="mb-2"><i className="bi bi-envelope me-2"></i>info@schoolsupply.com</li>
+            </ul>
+          </div>
+        </div>
+        <hr className="my-4 bg-secondary" />
+        <div className="text-center">
+          <p className="mb-0">© 2025 Kov Songheng. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
   </>
 }
