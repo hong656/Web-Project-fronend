@@ -159,7 +159,7 @@ export default function Home() {
             )}
             
             <div className="text-center mt-5">
-              <Link href="/products" className="btn btn-primary btn-lg px-4">
+              <Link href="#" className="btn btn-primary btn-lg px-4">
                 <i className="bi bi-grid me-2"></i>View All Products
               </Link>
             </div>
@@ -218,6 +218,60 @@ export default function Home() {
         </div>
       </div>
     </div>
+
+    <section className="py-5">
+      <div className="container">
+        <div className="row align-items-center">
+          <div className="col-lg-6 mb-4 mb-lg-0">
+            <img 
+              src="/stacked-books.jepg" 
+              alt="Colorful School Supplies" 
+              width={600} 
+              height={400} 
+              className="img-fluid rounded shadow-lg"
+            />
+          </div>
+          <div className="col-lg-6">
+            <h2 className="section-title mb-4">How It Works</h2>
+            <div className="d-flex mb-4">
+              <div className="me-4">
+                <div className="bg-primary rounded-circle text-white d-flex align-items-center justify-content-center" style={{width: "50px", height: "50px"}}>
+                  <span className="fw-bold">1</span>
+                </div>
+              </div>
+              <div>
+                <h4 className="fw-bold">Browse Our Catalog</h4>
+                <p>Explore our extensive collection of high-quality school supplies.</p>
+              </div>
+            </div>
+            
+            <div className="d-flex mb-4">
+              <div className="me-4">
+                <div className="bg-primary rounded-circle text-white d-flex align-items-center justify-content-center" style={{width: "50px", height: "50px"}}>
+                  <span className="fw-bold">2</span>
+                </div>
+              </div>
+              <div>
+                <h4 className="fw-bold">Place Your Order</h4>
+                <p>Select your items and choose your preferred delivery option.</p>
+              </div>
+            </div>
+            
+            <div className="d-flex">
+              <div className="me-4">
+                <div className="bg-primary rounded-circle text-white d-flex align-items-center justify-content-center" style={{width: "50px", height: "50px"}}>
+                  <span className="fw-bold">3</span>
+                </div>
+              </div>
+              <div>
+                <h4 className="fw-bold">Receive Your Supplies</h4>
+                <p>Get your order delivered right to your doorstep or pick it up in-store.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <footer className="bg-dark text-light py-5">
       <div className="container">
