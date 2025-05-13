@@ -219,12 +219,12 @@ export default function Home() {
       </div>
     </div>
 
-    <section className="py-5">
+    <section className="py-5 bg-primary">
       <div className="container">
         <div className="row align-items-center">
           <div className="col-lg-6 mb-4 mb-lg-0">
             <img 
-              src="/stacked-books.jepg" 
+              src="/stacked-books.jpeg" 
               alt="Colorful School Supplies" 
               width={600} 
               height={400} 
