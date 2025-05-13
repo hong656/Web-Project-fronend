@@ -24,11 +24,15 @@ export default function Home() {
   // Add effect to handle body scroll when modal is opened/closed
   useEffect(() => {
     const handleModalOpen = () => {
+      document.documentElement.style.overflow = 'hidden';
       document.body.style.overflow = 'hidden';
+      document.body.style.paddingRight = '15px'; // Compensate for scrollbar
     };
 
     const handleModalClose = () => {
-      document.body.style.overflow = 'auto';
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
     };
 
     const modal = document.getElementById('productModal');
@@ -42,6 +46,8 @@ export default function Home() {
         modal.removeEventListener('show.bs.modal', handleModalOpen);
         modal.removeEventListener('hidden.bs.modal', handleModalClose);
       }
+      // Ensure scroll is restored if component unmounts while modal is open
+      handleModalClose();
     };
   }, []);
 
