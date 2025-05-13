@@ -23,7 +23,7 @@
 /* Dark mode variables */
 .dark-mode {
   --background: #121212;
-  --foreground: #e0e0e0;
+  --foreground: #ffffff;
   --primary: #60a5fa;
   --primary-dark: #3b82f6;
   --primary-light: #93c5fd;
@@ -43,10 +43,12 @@
 .dark-mode .card {
   background-color: #1f2937;
   color: var(--foreground);
+  border: 1px solid #374151 !important;
 }
 
 .dark-mode .bg-light {
   background-color: #1f2937 !important;
+  color: var(--foreground) !important;
 }
 
 .dark-mode .text-muted {
@@ -55,18 +57,79 @@
 
 .dark-mode .feature-card {
   background-color: #1f2937;
+  border: 1px solid #374151;
 }
 
 .dark-mode .list-group-item.bg-light {
   background-color: #1f2937 !important;
+  color: var(--foreground) !important;
+  border: 1px solid #374151 !important;
 }
 
 .dark-mode .hero-section {
   background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
 }
 
+.dark-mode .btn-light {
+  background-color: #374151 !important;
+  color: var(--foreground) !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-mode .btn-light:hover {
+  background-color: #4b5563 !important;
+  color: var(--foreground) !important;
+}
+
+.dark-mode .form-control {
+  background-color: #1f2937 !important;
+  border-color: #374151 !important;
+  color: var(--foreground) !important;
+}
+
+.dark-mode .form-control:focus {
+  background-color: #1f2937 !important;
+  border-color: var(--primary) !important;
+  color: var(--foreground) !important;
+}
+
+.dark-mode .input-group-text {
+  background-color: #1f2937 !important;
+  border-color: #374151 !important;
+  color: var(--foreground) !important;
+}
+
+.dark-mode .navbar {
+  background-color: #1f2937 !important;
+  border-bottom: 1px solid #374151 !important;
+}
+
+.dark-mode .navbar-dark .navbar-nav .nav-link {
+  color: var(--foreground) !important;
+}
+
+.dark-mode .navbar-dark .navbar-nav .nav-link:hover {
+  color: var(--primary) !important;
+}
+
+.dark-mode .badge {
+  color: var(--foreground) !important;
+}
+
+.dark-mode .bg-dark {
+  background-color: #111827 !important;
+}
+
+.dark-mode .bg-primary {
+  background-color: var(--primary) !important;
+}
+
+.dark-mode .text-primary {
+  color: var(--primary) !important;
+}
+
 /* Transition for smooth dark mode toggle */
-body, .card, .bg-light, .feature-card, .list-group-item {
+body, .card, .bg-light, .feature-card, .list-group-item, .btn-light, .form-control, .input-group-text, .navbar {
   transition: var(--transition);
 }
 
